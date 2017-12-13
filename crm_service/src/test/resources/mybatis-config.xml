@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="jdbc.properties" />
+	<settings>
+		<!-- logImpl表示指定日志使用的模式，STDOUT_LOGGING表示
+		使用mybatis自带的日志输出 -->
+		<!-- 设置之后可以打印执行时候的日志，包括最终执行的sql语句 -->
+		<setting value="STDOUT_LOGGING" name="logImpl"/>
+	</settings>
+	<!-- 使用别名 -->
+	<!-- <typeAliases>
+		<package name="com.lozon.test.entity"/>
+	</typeAliases>  -->
+	<!-- default 指定数据库环境 -->
+	<environments default="test">
+		<environment id="test">
+			<!-- 配置事务管理器 -->
+			<transactionManager type="JDBC"></transactionManager>
+			<!-- 配置数据源 -->
+			<!-- 使用配置文件 -->
+			<dataSource type="POOLED">
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+			</dataSource>
+			<!-- 不使用配置文件 -->
+			<!-- <dataSource type="POOLED">
+				<property name="username" value="root"/>
+				<property name="password" value="root"/>
+				<property name="driver" value="com.mysql.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql:///mybatis"/>
+			</dataSource> -->
+		</environment>
+	</environments>
+	<mappers>
+		<!-- <mapper resource="com/lozon/test/entity/UserMapper.xml"/> -->
+		<mapper resource="com/lozon/test/dao/UserMapper.xml"/>
+		<mapper class="com.lozon.test.dao.UserMapper"/>
+		<mapper resource="com/lozon/test/dao1/UserMapper.xml"/>
+
+	</mappers>
+</configuration>

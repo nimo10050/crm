@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.lozon.crm</groupId>
+    <artifactId>crm_parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <artifactId>crm_web</artifactId>
+  <packaging>war</packaging>
+<!--   <dependencyManagement></dependencyManagement> -->
+  <!-- 所依赖的jar包 -->
+  <dependencies>
+  	<dependency>
+  		<groupId>com.lozon.crm</groupId>
+  		<artifactId>crm_service</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency> 
+  
+	<dependency>
+		<groupId>com.lozon.crm</groupId>
+	  	<artifactId>crm_domain</artifactId>
+	  	<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
+  
+  
+  <!-- jdk1.7 -->
+  <build>
+ 	<finalName>crm_web</finalName>
+	<pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>UTF-8</encoding>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
+			<!-- maven内置 的tomcat7插件 
+				默认是 tomcat 6  与 jdk7 一起用时
+				报错
+				The type java.io.ObjectInputStream 
+				cannot be resolved. It is indirectly 
+				referenced from required .class files
+			-->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<!-- 可以灵活配置工程路径 -->
+					<path>/crm_web</path>
+					<!-- 可以灵活配置端口号 -->
+					<port>8080</port>
+				</configuration>
+			</plugin>
+		</plugins>
+	</pluginManagement>
+  </build>
+  
+</project>
