@@ -1,16 +1,15 @@
 package com.lozon.service;
 
-import java.lang.reflect.Constructor;
 import java.util.List;
 
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.lozon.dao.CustomerMapper;
 import com.lozon.dao.DictMapper;
 import com.lozon.domain.BaseDict;
+import com.lozon.domain.Customer;
+import com.lozon.domain.QueryVo;
 
 
 @Service
@@ -22,20 +21,32 @@ public class CustomerServiceImpl implements CustomerService{
 	private CustomerMapper customerMapper;
 	
 	public List<BaseDict> findDictByCode(String code) {
-		System.out.println("hello");
 		return dictMapper.listDictByCode(code);
 	}
-	
-	@Test
-	public void test1() throws Exception {
-		ClassLoader loader = Thread.currentThread().getContextClassLoader();
-		Class<?> loadClass = loader.loadClass("com.lozon.service.CustomerServiceImpl");
-		// 通过默认构造器实例化
-		Constructor<?> constructor = loadClass.getConstructor(null);
-		CustomerServiceImpl instance = (CustomerServiceImpl)constructor.newInstance();
-		// 通过class实例化
-		//CustomerServiceImpl instance = (CustomerServiceImpl)loadClass.newInstance();
-		System.out.println(instance);
+
+	@Override
+	public List<Customer> findCustomerByVo(QueryVo vo) {
+		return customerMapper.findCustomerByVo(vo);
+	}
+
+	@Override
+	public Integer findCustomerByVoCount(QueryVo vo) {
+		return customerMapper.findCustomerByVoCount(vo);
+	}
+
+	@Override
+	public void deleteCustomerById(String id) {
+		customerMapper.deleteCustomerById(id);
+	}
+
+	@Override
+	public Customer findCustomerById(String id) {
+		return customerMapper.findCustomerById(id);
+	}
+
+	@Override
+	public void updateCustomer(Customer customer) {
+		customerMapper.updateCustomer(customer);
 	}
 
 }

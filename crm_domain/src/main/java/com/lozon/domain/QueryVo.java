@@ -8,7 +8,7 @@ public class QueryVo {
 	private String custLevel;
 	private Integer page = 1;
 	private Integer start;
-	private Integer size = 10;
+	private Integer size = 20;
 
 
 	public Integer getStart() {
